@@ -1,0 +1,43 @@
+<!--Written by Angel Chikumbirike
+Angelchikumbirike@gmail.com 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Scrabble Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+    <h1>Scrabble Game</h1>
+    <div id="gameContainer">
+        <div id="rules">
+            <h2>Game Rules</h2>
+            <p>Drag tiles onto the board to form words. Use double/triple word and letter bonuses to score higher!</p>
+            <p>Submit your word to validate it. The game ends when all tiles are used or no valid moves remain.</p>
+        </div>
+        <!-- Scrabble Board -->
+        <div id="scrabbleBoard" class="board"></div>
+        <div id="tileRackContainer">
+        <!-- Tile Rack -->
+        <div id="tileRack" class="rack"></div>
+        <div id="validationMessage" class="message"></div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="dealTiles" class="btn">Deal Tiles</button>
+            <button id="submitWord" class="btn">Submit Word</button>
+            <button id="resetBoard" class="btn">Reset Board</button>
+            <p id="score">Score: 0</p>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

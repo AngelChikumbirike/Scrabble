@@ -1,0 +1,376 @@
+/*Written by Angel Chikumbirike
+Angelchikumbirike@gmail.com */
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f5f7fa, #c3cfe2); /* Light gradient */
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+}
+
+#gameContainer {
+    display: flex;
+    flex-direction: row; /* Arrange elements side by side */
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    gap: 30px; /* Space between columns */
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 2px;
+    padding: 15px;
+    background-color: #fdf8ec;
+    border: 3px solid #8a6d3b;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.tile {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #999;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Special square styling */
+.tripleWord {
+    background-color: #ff5555;
+}
+
+.doubleWord {
+    background-color: #ffb6b6;
+}
+
+.tripleLetter {
+    background-color: #5555ff;
+}
+
+.doubleLetter {
+    background-color: #b6b6ff;
+}
+
+.center {
+    background-color: #ffb6b6;
+}
+
+/* Ensure images are visible even with background colors */
+.tile[class*="Word"],
+.tile[class*="Letter"],
+.tile.center {
+    background-blend-mode: multiply;
+}
+
+.tile.blank {
+    background-color: #e8d0b0;
+}
+
+.rack {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    min-height: 50px;
+    padding: 10px;
+    background: #555;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #35495e, #3a6073);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.rack .tile {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: grab;
+    position: relative;
+}
+.btn {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+}
+.controls .btn {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#score {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.letter-counter {
+    margin-top: 20px;
+    border: 2px solid #333;
+    padding: 10px;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.letter-count {
+    padding: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #999;
+}
+
+.swap-zone {
+    margin-top: 20px;
+    border: 2px dashed #ff0000;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.tile.dragging {
+    opacity: 0.6;
+}
+
+.board-square {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #999;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5d6a7;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tile.ui-draggable-dragging {
+    z-index: 1000;
+}
+
+.tile.occupied {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#tileRack .tile {
+    position: relative;
+    cursor: grab;
+}
+
+.board .tile {
+    position: relative;
+}
+
+#scrabbleBoard {
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+    grid-template-rows: repeat(15, 40px);
+    gap: 1px;
+    background: #f5d6a7;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.board-square {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #999;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5d6a7;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Special square colors */
+.tripleWord {
+    background-color: #ff5555 !important;
+}
+
+.doubleWord {
+    background-color: #ffb6b6 !important;
+}
+
+.tripleLetter {
+    background-color: #5555ff !important;
+}
+
+.doubleLetter {
+    background-color: #b6b6ff !important;
+}
+
+.blank {
+    background-color: #f5d6a7;
+}
+
+.center {
+    background-color: #ffb6b6;
+    background-image: url('img/scrabble/star.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Tile styles */
+.tile {
+    width: 38px;
+    height: 38px;
+    background-size: cover;
+    background-position: center;
+    cursor: move;
+    position: relative;
+    z-index: 2;
+}
+
+#tileRack {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    padding: 32px;
+    background-image: url('img/scrabble/Scrabble_Rack_flat.resized.png');
+    border-radius: 15px;
+    margin: 20px auto;
+    width: fit-content;
+    min-width: 300px;
+}
+
+.tile.locked {
+    cursor: not-allowed;
+}
+
+.btn#submitWord {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+}
+
+.btn#submitWord:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+}
+
+/* Message styling for feedback */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+
+.message.success {
+    background: #4CAF50;
+}
+
+.message.error {
+    background: #f44336;
+}
+
+.square-label {
+    font-size: 8px;
+    text-align: center;
+    color: white;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Ensure dropped tiles remain visible */
+.board-square .tile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Add this to handle image layering */
+.board-square.occupied {
+    background-blend-mode: multiply;
+}
+
+/* Rules section */
+#rules {
+    text-align: left;
+    width: 250px; /* Fixed width for rules */
+    background: #ffffff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+/* Controls section (buttons and score) */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.letter-counter {
+    margin: 20px auto;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.message.success {
+    background-color: #4CAF50;
+}
+
+.message.error {
+    background-color: #f44336;
+}
