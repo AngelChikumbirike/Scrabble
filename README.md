@@ -1,4 +1,7 @@
 # Scrabble-Like Game
+Live at https://angelchikumbirike.github.io/Scrabble/
+GitHub Repository: https://github.com/AngelChikumbirike
+
 
 This project is a web-based Scrabble-like game where players can drag-and-drop tiles to form words on a board, submit them for validation using a dictionary API, and keep track of scores. The game features bonuses for specific tiles and cells, mimicking the mechanics of the official Scrabble game.
 
